@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../Components/Card'
 import axios from 'axios'
+import { useContextGlobal } from '../Components/utils/Context'
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Home = () => {
+const {state, dispatch} = useContextGlobal()
 
-  const [users, setUsers] = useState([])
-  const url = 'https://jsonplaceholder.typicode.com/users'
-  useEffect(() =>{
-    axios(url).then((res) => setUsers(res.data))
+  const themeClass = state.theme === 'dark' ? 'dark' : '';
 
-  }, [])
+
   return (
-    <main className="" >
+    <main className={themeClass} >
       <h1>Home</h1>
       <div className='card-grid'>
-        {users.map((user) => (
+        {state.users.map((user) => (
           <Card item={user} key={user.id} />
         ))}
       </div>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from './Button';
 
 
 const Form = () => {
@@ -32,10 +31,10 @@ const Form = () => {
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Nombre completo" value={cliente.nombre} onChange={handleName}/>
         <input type="email" placeholder="Coloque su email" value={cliente.email} onChange={handleEmail}/>
-        <Button>Enviar</Button>
+        <button>Enviar</button>
       </form>
       {error && "Por favor, revise sus datos"}
-      {show && <h2>Muchas gracias ${cliente.nombre}, te contactaremos via email cuanto antes</h2> }
+      {show && <h2>Muchas gracias {cliente.nombre}!, te contactaremos via email cuanto antes</h2> }
     </div>
   );
 };

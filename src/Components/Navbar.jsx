@@ -1,17 +1,23 @@
-import Button from './Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { routes } from '../route/routes';
+import { useContextGlobal } from './utils/Context';
 
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const {state, dispatch} = useContextGlobal();
+
+  const themeClass = state.theme === 'dark' ? 'dark-nav' : '';
 
   return (
-    <nav>
-      <Button onClick={() => navigate(-1)}>
+    <nav className={themeClass}>
+      <div className='dh-logo'>
+        <img src="/public/images/DH.png" alt="" className='dh-img' />
+      </div>
+      <div className='nav-routes'>
+      <button onClick={() => navigate(-1)}>
         <h4>⬅Volver</h4>
-      </Button>
+      </button>
       <Link to={routes.home}>
         <h4>Home</h4>
       </Link>
@@ -21,7 +27,10 @@ const Navbar = () => {
       <Link to={routes.favs}>
         <h4>Favs</h4>
       </Link>
-      <button>Change theme</button>
+      <button onClick={() => dispatch({type: 'TOGGLE_THEME'})}>
+          {state.theme === 'light' ? "🌙" : "☀️"
+      }</button>
+      </div>
     </nav>
   )
 }
