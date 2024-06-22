@@ -79,7 +79,8 @@ footer img{
 .redes{
   background-color: #000;
   width: 50px;
-  margin: 10px
+  margin: 10px;
+  border-radius: 70%;
 }
 
 .footer-text{
